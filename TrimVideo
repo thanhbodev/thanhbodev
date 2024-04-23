@@ -1,0 +1,16 @@
+import ffmpeg
+
+start_time = '00:05:10'  # Thời gian bắt đầu cắt (HH:MM:SS)
+end_time = '00:07:50'  # Thời gian kết thúc cắt (HH:MM:SS)
+
+try:
+    (
+        ffmpeg.input("E:/py/Toolmini/input.mp4", ss=start_time, to=end_time)
+        .output("E:/py/Toolmini/trimmed_output.mp4")
+        .run()
+    )
+except ffmpeg.Error as e:
+    if e.stderr:
+        print('Lỗi FFmpeg:', e.stderr.decode())
+    else:
+        print('Lỗi FFmpeg: Không có thông tin lỗi cụ thể được trả về.')
